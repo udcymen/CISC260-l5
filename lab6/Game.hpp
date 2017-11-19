@@ -12,6 +12,7 @@
 #include "LL.hpp"
 #include <iostream>
 #include <string>
+using namespace std;
 
 class Game {
 	bool AVL;
