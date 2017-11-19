@@ -38,44 +38,39 @@ void AVLTree::addNode(string s, NodeT *r){
 		return;
 	}
 
-	if(s < r->word){
+	else if(s < r->word){
 		if(r->left == NULL){
 			NodeT *n = new NodeT(s);
 			r->left = n;
 			n->parent = r;
-			n->height = 1;
+
 			cout<<"Inserting to left of "<<r->word<<endl;
 			AVLTree::adjustHeights(n);
-			cout<<"                             "<<endl;
+			cout<<endl;
 		}
 		else{
 			cout<<"Looking left of "<<r->word<<endl;
 			addNode(s, r->left);
 		}
 	}
-	else if(s > r->word){
+	else {
 		if(r->right == NULL){
 			NodeT *n = new NodeT(s);
 			r->right = n;
 			n->parent = r;
-			n->height = 1;
 			cout<<"Inserting to right of "<<r->word<<endl;
 			AVLTree::adjustHeights(n);
-			cout<<"                             "<<endl;
+			cout<<endl;
 		}
 		else{
 			cout<<"Looking right of "<<r->word<<endl;
 			addNode(s, r->right);
 		}
 	}
-	return;
 }
 
 void AVLTree::printIO(NodeT *root){
-	if(root == NULL){
-		return;
-	}
-	else{
+	if(root != NULL){
 		printIO(root->left);
 		root->printTNode();
 		printIO(root->right);
@@ -83,10 +78,7 @@ void AVLTree::printIO(NodeT *root){
 }
 
 void AVLTree::printPre(NodeT *root){
-	if(root == NULL){
-		return;
-	}
-	else{
+	if(root != NULL){
 		root->printTNode();
 		printPre(root->left);
 		printPre(root->right);
@@ -94,10 +86,7 @@ void AVLTree::printPre(NodeT *root){
 }
 
 void AVLTree::printPost(NodeT *root){
-	if(root == NULL){
-		return;
-	}
-	else{
+	if(root != NULL){
 		printPost(root->left);
 		printPost(root->right);
 		root->printTNode();
@@ -216,6 +205,8 @@ int AVLTree::getDiff(NodeT *n){
 			diff = 0 - n->right->height;
 		}
 	}
-	return diff;
+	else {
+		return diff;
+	}
 }
 
